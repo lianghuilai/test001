@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="cn.lexed.mapper.UsersMapper">
+  
+    <!-- 查询所有 -->
+    <select id="selectUsersAll" resultType="users">
+          select * from users
+    </select>
+    
+    
+    <!-- 添加 -->
+    <insert id="insertUser" parameterType="users">         
+          insert into users(name,age) values(#{name},#{age})        
+    </insert>
+</mapper>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>添加用户</title>
+<script type="text/javascript" th:src="@{/js/jquery-3.3.1.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+      $(function(){
+    	  $("#ss").click(function(){
+    		  
+    		    //  检查一下事件是否触发 alert("111");
+    		    //获取表单项输入的值
+    		    var name=$("#txtname").val();
+    		    var age=$("#txtage").val();
+    		    $.ajax({
+    		    	//url:"http://localhost:8080/users/toaddUser",
+    		    	url:[[@{/users/toaddUser}]],
+    		    	type:"post",
+    		    	data:{"name":name,"age":age},
+    		    	dataType:"json",
+    		    	success:function(data){
+    		    		if("success"==data.results){
+    		    			alert("添加成功")
+    		    			window.location.href=[[@{/users/findUserAll}]];
+    		    		}else{
+    		    			alert("添加失败")
+    		    		}
+    		    	}
+    		    	
+    		    	
+    		    })
+    	  })
+      })
+</script>
+</head> 
+<body> 
+        <form th:action="@{/users/toaddUser}" th:method="post">
+                          用户姓名： <input type="text" name="name" id="txtname"/> <br />
+                          用户年龄：<input type="text"  name="age" id="txtage"/>  <br />
+             <!-- <input type="submit" value="添加"/> -->
+             <input type="button" id="ss" value="添加"/>
+        </form>
+</body>
+</html>
